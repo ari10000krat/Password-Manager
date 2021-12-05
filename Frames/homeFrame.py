@@ -50,11 +50,11 @@ class HomeFrame(tk.Frame):
 		VObj = siteData()
 		allPass = VObj.viewData()
 		heading = "\tSiteName \t\t | \t Username\n"
-		heading += "-"*90+"\n"
+		heading += "-"*65+"\n"
 		self.viewData.insert('insert', heading, 'head')
 		for d in allPass:
 			info ="\t"+d[0]+" \t\t | \t "+d[1]+"\n"
-			info+="-"*90+"\n"
+			info+="-"*65+"\n"
 			self.viewData.insert('insert', info, 'data')
 		self.viewData.tag_config('head', background=self.primaryColor, foreground=self.secTextColor)
 		self.viewData.tag_config('data', foreground=self.secTextColor)

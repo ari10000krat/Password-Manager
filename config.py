@@ -1,2 +1,2 @@
-EMAIL_ADDRESS = "" #enter email id
-PASSWORD = "" #enter password
+EMAIL_ADDRESS = "ksendomorph@gmail.com"
+PASSWORD = "kalikali"

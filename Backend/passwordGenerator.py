@@ -1,6 +1,6 @@
 import random
 import subprocess
-
+from tkinter import  *
 
 class Pgenerator(object):
 	def __init__(self):
@@ -14,5 +14,16 @@ class Pgenerator(object):
 		return self.Pass
 
 	def c2c(self, txt):
-		cmd='echo '+(txt).strip()+'|clip'
-		return subprocess.check_call(cmd, shell=True)
+    	#Windows
+		# cmd='echo '+(txt).strip()+'|clip'
+		# return subprocess.check_call(cmd, shell=True)
+
+		#Linux
+		r = Tk()
+		msg = Label(text='Password has been copied')
+		msg.pack()
+		r.withdraw()
+		r.clipboard_clear()
+		r.clipboard_append(txt)
+		r.deiconify()
+		r.mainloop()

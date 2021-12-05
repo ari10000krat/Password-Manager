@@ -1,4 +1,5 @@
 import tkinter as tk
+import PIL
 from tkinter.font import families
 from PIL import ImageTk , Image
 from Frames.forgotPassFrame import ForgotPassFrame
