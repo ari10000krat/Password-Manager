@@ -1,2 +1,2 @@
-EMAIL_ADDRESS = "ksendomorph@gmail.com"
-PASSWORD = "kalikali"
+EMAIL_ADDRESS = ""
+PASSWORD = ""
