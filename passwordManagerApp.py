@@ -45,14 +45,14 @@ class PasswordManagerApp(tk.Tk):
 			self.frames[F] = frame
 			frame.grid(row=0, column=0, sticky="nsew")
 
-		# This will raise setupFrame if opened for first time(means user doesn't exist)
-		# And raise loginFrame the rest of the time
+		# Это вызовет setupFrame при первом открытии (означает, что пользователь не существует)
+		# И поднимаем loginFrame в остальное время
 		if(database.isEmpty()):
 			self.show_frame(SetupFrame)
 		elif(not database.isEmpty()):
 			self.show_frame(LoginFrame)
 
-	# Raises Frame in all files
+	# Поднимает фрейм во всех файлах
 	def show_frame(self, cont):
 		frame = self.frames[cont]
 		frame.tkraise()

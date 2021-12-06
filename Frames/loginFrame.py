@@ -45,7 +45,7 @@ class LoginFrame(tk.Frame):
 		if key == '\r':
 			self.checkPass()
 
-	# Check entered password with database (Pending: raises next frame) 
+	# Проверить введенный пароль с базой данных (Ожидание: поднимает следующий кадр)
 	def checkPass(self):
 		mp = self.mpassentry.get()
 		pdb = PMPDatabase()

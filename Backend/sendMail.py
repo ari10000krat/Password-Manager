@@ -13,7 +13,6 @@ class SendMail():
 		self.server.starttls()
 		self.server.login(self.sender, self.senderPassword)
 
-	# Order of parameters matter
 	def send(self, reciever, subject, message):
 		msg = MIMEMultipart()
 		msg['From'] = self.sender

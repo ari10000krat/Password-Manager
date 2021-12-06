@@ -30,17 +30,17 @@ class SetupFrame(tk.Frame):
 		self.setupFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
 		self.titleLabel = tk.Label(self.setupFrame, text='Setup', bg = self.backgroundColor, fg = self.primaryColor, font=("Rockwell", 18, "bold"))
 		self.titleLabel.place(relx=0.25, rely=0.1, relheight=0.1, relwidth=0.5)
-		# User will enter email for the first time
+		# Пользователь впервые вводит адрес электронной почты
 		self.emailLabel = tk.Label(self.setupFrame, bd = 2, text = "Email", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
 		self.emailLabel.place(relx=0.25, rely=0.2, relwidth=0.5, relheight=0.07)
 		self.emailentry = tk.Entry(self.setupFrame, width = 20, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.emailentry.place(relx=0.25, rely=0.26, relwidth=0.5, relheight=0.05)
 		self.emailentry.delete(0, 'end')
-		# Will send OTP to verify Email
+		# Отправит OTP для подтверждения электронной почты
 		self.sendOtpButton = tk.Button(self.setupFrame, text="Send OTP", command=self.sendOtp, bg=self.primaryColor, fg=self.secTextColor,	font=self.labelFont)
 		self.sendOtpButton.place(relx=0.35, rely=0.34, relwidth=0.3, relheight=0.07)
-		# Will check the entered OTP with generated OTP
-		# User will enter OTP from the email
+		# Будет проверять введенный OTP сгенерированным OTP
+		# Пользователь будет вводить OTP из электронного письма
 		self.otpLabel = tk.Label(self.setupFrame, bd = 2, text = "OTP", bg=self.backgroundColor, fg=self.secTextColor, font = self.labelFont)
 		self.otpLabel.place(relx=0.25, rely=0.43, relwidth=0.5, relheight=0.07)
 		self.otpentry = tk.Entry(self.setupFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
@@ -48,17 +48,17 @@ class SetupFrame(tk.Frame):
 		self.otpentry.delete(0, 'end')
 		self.otpEnterButton = tk.Button(self.setupFrame, text="Check OTP",	command=lambda: [self.checkOTP()], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
 		self.otpEnterButton.place(relx=0.35, rely=0.57, relwidth=0.3, relheight=0.06)
-		# User will enter the password for the first time
+		# Пользователь вводит пароль в первый раз
 		self.passLabel = tk.Label(self.setupFrame, text = "Password", font = self.labelFont, bg=self.backgroundColor, fg=self.secTextColor)
 		self.passLabel.place(relx=0.25, rely=0.66, relwidth=0.5, relheight=0.07)
 		self.passentry = tk.Entry(self.setupFrame, show = "*", width = 20, bd = 2, font = self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
 		self.passentry.place(relx=0.25, rely=0.72, relwidth=0.5, relheight=0.05)
 		self.passentry.delete(0, 'end')
-		# Will insert email and password to database
+		# Вставим адрес электронной почты и пароль в базу данных
 		self.enter = tk.Button(self.setupFrame, text = "Enter", bg=self.primaryColor, fg=self.secTextColor, font = self.labelFont, command = lambda:[self.insertPass(self.checkOTP())])
 		self.enter.place(relx=0.35, rely=0.8, relwidth=0.3, relheight=0.07)
 
-	# Will check the entered OTP with otpStatus from checkOTP()
+	# Будет проверять введенный OTP с помощью otpStatus из checkOTP ()
 	def insertPass(self, otpStatus):
 			from Frames.loginFrame import LoginFrame
 			try:
@@ -89,7 +89,7 @@ class SetupFrame(tk.Frame):
 				self.passentry.delete(0, 'end')
 				self.otpentry.delete(0, 'end')
 
-	# Check the OTP with generated OTP and return True or False
+	# Проверить OTP сгенерированным OTP и вернуть True или False
 	def checkOTP(self):
 		enteredOTP = self.otpentry.get()
 		if (enteredOTP == self.generatedOTP):
@@ -105,7 +105,7 @@ class SetupFrame(tk.Frame):
 			wrongOtpLabel.after(2000, wrongOtpLabel.destroy)
 			return False
 
-	# Send mail with generated OTP
+	# Отправлять почту с сгенерированным OTP
 	def sendOtp(self):
 		try:
 			mail = SendMail()

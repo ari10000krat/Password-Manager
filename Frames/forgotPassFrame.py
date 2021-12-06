@@ -22,14 +22,14 @@ class ForgotPassFrame(tk.Frame):
 		#fonts
 		self.entryFont = ("Rockwell", 12)
 		self.labelFont = ("Rockwell", 12, "bold")
-		# To change frame in other functions
+		# Для изменения кадра в других функциях
 		self.controller = controller
 		otpObj = Otp()
 		self.generatedOTP = otpObj.generateOTP()
 		self.forgotPassFrame = tk.LabelFrame(self, text="Forgot Password", bd=5, bg=self.backgroundColor, fg=self.secTextColor)
 		self.forgotPassFrame.place(relx=0, rely=0, relwidth=1, relheight=1)
 		self.confirmLabel = tk.Label(self.forgotPassFrame, text="Email Sent", bg = self.successColor, fg = self.priTextColor, font=self.labelFont)
-		# User will enter email to send OTP to
+		# Пользователь будет вводить адрес электронной почты для отправки OTP на
 		self.titleLabel = tk.Label(self.forgotPassFrame, text='Forgot Password ?', bg = self.backgroundColor, fg = self.primaryColor, font=("Rockwell", 18, "bold"))
 		self.titleLabel.place(relx=0.25, rely=0.15, relheight=0.1, relwidth=0.5)
 		self.emailLabel = tk.Label(self.forgotPassFrame, text='Enter registered email id', bg = self.backgroundColor, fg = self.secTextColor, font=self.labelFont)
@@ -39,10 +39,10 @@ class ForgotPassFrame(tk.Frame):
 		self.emailentry.insert(0, "Enter your Email")
 		self.emailentry.focus()
 		self.emailentry.delete(0, 'end')
-		# Will send OTP to email to verify email
+		# Отправит OTP на электронную почту для подтверждения электронной почты
 		self.sendOtpButton = tk.Button(self.forgotPassFrame, text="Send OTP", command=self.sendOtp, font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
 		self.sendOtpButton.place(relx=0.35, rely=0.45, relwidth=0.3, relheight=0.07)
-		# User will enter OTP here
+		# Здесь пользователь вводит одноразовый пароль
 		self.otpLabel = tk.Label(self.forgotPassFrame, text='Enter Otp', bg = self.backgroundColor, fg = self.secTextColor, font=self.labelFont)
 		self.otpLabel.place(relx=0.25, rely=0.56, relheight=0.07, relwidth=0.5)
 		self.otpentry = tk.Entry(self.forgotPassFrame, width=20, font=self.entryFont, bg=self.surface1Color, fg=self.secTextColor)
@@ -50,14 +50,15 @@ class ForgotPassFrame(tk.Frame):
 		self.otpentry.bind("<Return>", self.shortcuts)
 		# self.otpentry.insert(0, "Enter OTP here")
 		self.otpentry.delete(0, 'end')
-		# Will call chekOTP function and check the OTP
+		# Вызовет функцию chekOTP и проверит OTP
 		self.otpEnterButton = tk.Button(self.forgotPassFrame, text="Enter",	command=lambda: [ self.checkOTP(), self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end')], font=self.labelFont, bg=self.primaryColor, fg=self.secTextColor)
 		self.otpEnterButton.place(relx=0.35, rely=0.7, relwidth=0.3, relheight=0.07)
-		# Will take back to Login Frame if user changed their mind
+		# Вернется в окно входа, если пользователь передумал
 		self.backButton = tk.Button(self.forgotPassFrame, text="Back", command=lambda: [self.emailentry.delete(0, 'end'), self.otpentry.delete(0, 'end'), controller.show_frame(LoginFrame)], bg=self.surface2Color, fg=self.secTextColor)
 		self.backButton.place(relx=0.4, rely=0.8, relwidth=0.2, relheight=0.05)
-	# Will check OTP generated
-	# OTP is generated only once in __init__()
+
+	# Проверим сгенерированный одноразовый пароль
+	# OTP генерируется только один раз в __init __ ()
 	def checkOTP(self):
 		enteredOTP = self.otpentry.get()
 		if (enteredOTP == self.generatedOTP):
@@ -67,7 +68,7 @@ class ForgotPassFrame(tk.Frame):
 			errorLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 			errorLabel.after(2000, errorLabel.destroy)
 
-	# Will check the email with database(since changing email is not allowed) and send OTP to the entered email 
+	# Проверим электронную почту с базой данных (поскольку изменение адреса электронной почты не разрешено) и отправим OTP на введенный адрес электронной почты
 	def sendOtp(self):
 		mail = self.emailentry.get()
 		pdb = PMPDatabase()
@@ -85,7 +86,7 @@ class ForgotPassFrame(tk.Frame):
 		self.confirmLabel.place(relx=0.16, rely=0.02, relwidth=0.7, relheight=0.05)
 		self.confirmLabel.after(3000, self.confirmLabel.destroy())
 
-	# Shortcut for Enter key 
+	# Ярлык для клавиши Enter
 	def shortcuts(self, event):
 		key = event.char
 		if key == '\r':

@@ -6,7 +6,7 @@ class Otp:
 		self.characters = "abcdefghijklmnopqrstuvwxyz0123456789"
 		self.OTP = ''
 
-	# Used in forgotPassFrame and setupFrame to generate OTP once
+	# Используется в ForgotPassFrame и setupFrame для однократной генерации OTP
 	def generateOTP(self):
 		for _ in range(6):
 			self.OTP += random.choice(self.characters)

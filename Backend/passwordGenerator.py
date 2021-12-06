@@ -7,7 +7,6 @@ class Pgenerator(object):
 		self.characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%*()"
 		self.Pass = ''
 
-	# Used in forgotPassFrame and setupFrame to generate OTP once
 	def generatePass(self):
 		for _ in range(10):
 			self.Pass += random.choice(self.characters)

@@ -1,8 +1,7 @@
 import sqlite3
 import hashlib
 
-
-# This class is of MasterTable where app password(hashed) and email is stored in masterTable 
+#Это класс MasterTable, где пароль приложения (хешированный) и электронная почта хранятся в masterTable.
 class PMPDatabase:
 	def __init__(self):
 		try:
@@ -11,7 +10,7 @@ class PMPDatabase:
 		except Exception as e:
 			print(e)
 
-	# This will create masterTable (which is done in passwordManagerApp.py file)
+	# Это создаст masterTable (что делается в файле passwordManagerApp.py)
 	def createTable(self):
 		qCreate = """
 			CREATE TABLE IF NOT EXISTS masterTable (masterPass varchar(200), email varchar(100))
@@ -19,7 +18,7 @@ class PMPDatabase:
 		self.cursor.execute(qCreate)
 		self.connect.commit()
 
-	# This will hash the password and insert it along with email entered
+	# Эта функция будет хешировать пароль и вставить его вместе с введенным адресом электронной почты
 	def insertIntoTable(self, mp, em):
 
 		bytesMP = bytes(mp, 'utf-8')
@@ -32,8 +31,8 @@ class PMPDatabase:
 		self.cursor.execute(qInsert, (hashedMP, em))
 		self.connect.commit()
 
-	# This will update the existing password(hashed) instead of making a new row in database
-	# This is called in resetPassFrame.py
+	# Эта функция обновит существующий пароль (хешированный) вместо того, чтобы создавать новую строку в базе данных
+	# Эта функция вызывается в resetPassFrame.py
 	def updateIntoTable(self, mp):
 		mail = self.getMail()		
 		bytesMP = bytes(mp, 'utf-8')
@@ -46,10 +45,10 @@ class PMPDatabase:
 		self.connect.commit()
 
 
-	# This is used to check whether there is an existing user in passwordManagerApp.py
-	# If user exists:
-		# -> if True: setupFrame is raised
-		# -> if False: loginFrame is raised
+	# Это используется, чтобы проверить, есть ли существующий пользователь в passwordManagerApp.py
+	# Если пользователь существует:
+	# -> если True: setupFrame поднимается
+	# -> if False: создается loginFrame
 	def isEmpty(self):
 		qCount = """
 			SELECT COUNT(*) FROM masterTable
@@ -60,7 +59,7 @@ class PMPDatabase:
 			return True
 		return False
 
-	# This is used in loginFrame.py to check the password with database
+	# Используется в loginFrame.py для проверки пароля в базе данных
 	def loginCheck(self, mp):
 		bytesMP = bytes(mp, 'utf-8')
 		hashedMP = hashlib.sha256(bytesMP).hexdigest()
@@ -75,7 +74,7 @@ class PMPDatabase:
 			return True
 		return False
 
-	# This is used in forgotPassFrame.py to check email entered with database
+	# Это используется в ForgotPassFrame.py для проверки электронной почты, введенной с базой данных
 	def mailCheck(self, mail):
 		qSelect = """
 			SELECT * FROM masterTable
@@ -87,7 +86,7 @@ class PMPDatabase:
 		return False
 
 
-	# Used in updateIntoTable() to get mail from databse 
+	# Используется в updateIntoTable () для получения почты из базы данных
 	def getMail(self):
 		qSelect = """
 			SELECT * FROM masterTable

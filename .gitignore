@@ -4,3 +4,4 @@ Database/__pycache__/
 Backend/__pycache__/
 pwmdatabase.db
 secret.key
+config.py

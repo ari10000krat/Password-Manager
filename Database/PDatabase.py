@@ -2,7 +2,7 @@ import sqlite3
 from Backend.encryption import EncryptDeCrypt
 
 
-# This class is of MasterTable where app password(hashed) and email is stored in masterTable 
+# Этот класс относится к MasterTable, где пароль приложения (хешированный) и электронная почта хранятся в masterTable
 class siteData:
 	def __init__(self):
 		try:
@@ -11,7 +11,7 @@ class siteData:
 		except Exception as e:
 			print(e)
 
-	# This will create masterTable (which is done in passwordManagerApp.py file)
+	# Это создаст masterTable (что делается в файле passwordManagerApp.py)
 	def createDataTable(self):
 		dCreate = """
 			CREATE TABLE IF NOT EXISTS data (siteName varchar(200), siteUsername varchar(100), sitePassword text)
@@ -19,7 +19,7 @@ class siteData:
 		self.cursor.execute(dCreate)
 		self.connect.commit()
 
-	# This will hash the password and insert it along with email entered
+	# Эта функция будет хешировать пароль и вставить его вместе с введенным адресом электронной почты
 	def insertDataTable(self, sn, su, sp):
 		en = EncryptDeCrypt()
 		esp = en.encrypt_message(sp)

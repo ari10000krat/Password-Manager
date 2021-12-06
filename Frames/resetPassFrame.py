@@ -45,8 +45,8 @@ class ResetPassFrame(tk.Frame):
 		if key == '\r':
 			self.resetPass()
 	
-	# Will check if new password and nw password entered again are same
-	# and insert it into database with insertIntoTable() fom MPDatabase
+	# Проверим, совпадают ли новый пароль и новый пароль, введенный снова
+	# и вставляем в базу данных с помощью insertIntoTable () из MPDatabase
 	def resetPass(self):
 		try:
 			db = PMPDatabase()
